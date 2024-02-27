@@ -4,94 +4,9 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: http://example.com
+- url: http://localhost:3000/api/v1
   variables: {}
 paths:
-  /jobs:
-    post:
-      tags:
-      - Misc
-      summary: Create Job
-      operationId: CreateJob
-      parameters: []
-      requestBody:
-        description: ''
-        content:
-          application/json:
-            schema:
-              allOf:
-              - $ref: '#/components/schemas/CreateJobRequest'
-              - example:
-                  company: google
-                  position: intern
-            example:
-              company: google
-              position: intern
-        required: true
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-    get:
-      tags:
-      - Misc
-      summary: Get All Jobs
-      operationId: GetAllJobs
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-  /jobs/{id}:
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The user ID
-  
-    get:
-      tags:
-      - Misc
-      summary: Get Single Job
-      operationId: GetSingleJob
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-      security:
-      - bearer: []
-    patch:
-      tags:
-      - Misc
-      summary: Update Job
-      operationId: UpdateJob
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-      security:
-      - bearer: []
-    delete:
-      tags:
-      - Misc
-      summary: Delete Job
-      operationId: DeleteJob
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-      security:
-      - bearer: []
   /auth/register:
     post:
       tags:
@@ -148,6 +63,94 @@ paths:
           headers: {}
       deprecated: false
       security: []
+  /jobs:
+    post:
+      tags:
+      - Job
+      summary: Create Job
+      operationId: CreateJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateJobRequest'
+              - example:
+                  company: google
+                  position: intern
+            example:
+              company: google
+              position: intern
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - Job
+      summary: Get All Jobs
+      operationId: GetAllJobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    get:
+      tags:
+      - Job
+      summary: Get Single Job
+      operationId: GetSingleJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Job
+      summary: Update Job
+      operationId: UpdateJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - Job
+      summary: Delete Job
+      operationId: DeleteJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
 components:
   schemas:
     RegisterUserRequest:
@@ -202,7 +205,8 @@ components:
       scheme: bearer
 security: []
 tags:
-- name: Misc
-  description: ''
+
 - name: Auth
+  description: ''
+- name: Job
   description: ''
